@@ -24,13 +24,19 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/personName"
+                    android:id="@+id/PlaceName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Christopher"
+                    android:text="Vcity"
                     android:textColor="@color/black"
                     android:textSize="26sp"
                     android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/Description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Vcity"/>
 
 
 
