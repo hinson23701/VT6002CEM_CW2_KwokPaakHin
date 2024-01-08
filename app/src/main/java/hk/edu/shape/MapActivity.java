@@ -70,11 +70,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         double longitude = location.getLongitude();
                         // Do something with the latitude and longitude values
 
-                        LatLng Vcity = new LatLng(latitude,longitude);
+                        LatLng MyLocation = new LatLng(latitude,longitude);
                         mMap.addMarker(new MarkerOptions()
-                                .position(Vcity)
+                                .position(MyLocation)
                                 .title("My Location"));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(Vcity));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(MyLocation));
                     } else {
                         // Failed to retrieve location
                     }
