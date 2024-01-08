@@ -63,17 +63,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(), fineLocationPermission) == PackageManager.PERMISSION_GRANTED) {
             if (ContextCompat.checkSelfPermission(this.getApplicationContext(), coarseLocationPermission) == PackageManager.PERMISSION_GRANTED) {
-                fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            Location location = task.getResult();
-                            double latitude = location.getLatitude();
-                            double longitude = location.getLongitude();
-                            // Do something with the latitude and longitude values
-                        } else {
-                            // Failed to retrieve location
-                        }
+                fusedLocationProviderClient.getLastLocation().addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        Location location = task.getResult();
+                        double latitude = location.getLatitude();
+                        double longitude = location.getLongitude();
+                        // Do something with the latitude and longitude values
+
+                        LatLng Vcity = new LatLng(latitude,longitude);
+                        mMap.addMarker(new MarkerOptions()
+                                .position(Vcity)
+                                .title("My Location"));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(Vcity));
+                    } else {
+                        // Failed to retrieve location
                     }
                 });
             } else {
