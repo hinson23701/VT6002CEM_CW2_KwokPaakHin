@@ -45,6 +45,23 @@ public class MallListAdapter extends ArrayAdapter<Place> {
         return convertView;
     }
 
+    @Override
+    public int getCount() {
+        return malls.size();
+    }
+
+    @Nullable
+    @Override
+    public Place getItem(int position) {
+        return malls.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+
     private static class ViewHolder {
         TextView nameTextView;
         TextView descriptionTextView;
