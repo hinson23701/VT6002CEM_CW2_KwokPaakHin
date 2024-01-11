@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:text="Use without Login"
+        android:text="Quest Login"
         tools:layout_editor_absoluteX="105dp"
         tools:layout_editor_absoluteY="171dp"
         android:onClick="ToMainPage"/>

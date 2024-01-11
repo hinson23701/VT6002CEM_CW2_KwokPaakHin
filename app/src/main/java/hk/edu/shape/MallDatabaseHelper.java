@@ -49,7 +49,7 @@ public class MallDatabaseHelper extends SQLiteOpenHelper {
 
         // Recreate the tables
         onCreate(db);
-        // Handle database version upgrades if needed
+
     }
 
     public void insertMall(Place mall) {

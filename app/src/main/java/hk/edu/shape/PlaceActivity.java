@@ -3,6 +3,7 @@ package hk.edu.shape;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.List;
@@ -29,5 +30,10 @@ public class PlaceActivity extends Activity {
         List<Place> malls = databaseHelper.getAllMalls();
         adapter = new MallListAdapter(this, malls);
         listView.setAdapter(adapter);
+    }
+
+    public void OnClick(View view) {
+        Intent intent = new Intent(PlaceActivity.this, FavoritePlacesActivity.class);
+        startActivity(intent);
     }
 }
