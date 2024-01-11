@@ -122,4 +122,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Intent intent = new Intent(this, PlaceActivity.class);
         startActivity(intent);
     }
+
+    public void BusRouteClick(View view) {
+        Intent intent = new Intent(this, RouteListActivity.class);
+        startActivity(intent);
+    }
 }
