@@ -51,7 +51,7 @@ public class MallDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
 
     }
-
+//insert the data to database
     public void insertMall(Place mall) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();

@@ -16,14 +16,14 @@ public class FavoritePlacesAdapter extends ArrayAdapter<Place> {
     private Context mContext;
     private List<Place> favoritePlaces;
     private MallDatabaseHelper databaseHelper;
-
+ //define the variable
     public FavoritePlacesAdapter(Context context, List<Place> favoritePlaces) {
         super(context, 0, favoritePlaces);
         mContext = context;
         this.favoritePlaces = favoritePlaces;
         databaseHelper = new MallDatabaseHelper(mContext);
     }
-
+//get the view from database
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

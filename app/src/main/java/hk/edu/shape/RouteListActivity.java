@@ -1,7 +1,12 @@
 package hk.edu.shape;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONArray;
@@ -20,6 +25,9 @@ public class RouteListActivity extends AppCompatActivity {
 
     private ListView listView;
     private RouteListAdapter adapter;
+    private List<Route> allRoutes;
+    private EditText editTextSearch;
+    private Button buttonSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +37,32 @@ public class RouteListActivity extends AppCompatActivity {
         listView = findViewById(R.id.listView);
         adapter = new RouteListAdapter(this, new ArrayList<>());
         listView.setAdapter(adapter);
+
+        editTextSearch = findViewById(R.id.editTextSearch);
+        buttonSearch = findViewById(R.id.buttonSearch);
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = editTextSearch.getText().toString();
+                filterRoutes(query);
+            }
+        });
+
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String query = s.toString();
+                filterRoutes(query);
+            }
+        });
 
         fetchBusRoutes();
     }
@@ -44,6 +78,20 @@ public class RouteListActivity extends AppCompatActivity {
         adapter.clear();
         adapter.addAll(routes);
         adapter.notifyDataSetChanged();
+    }
+
+    private void filterRoutes(String query) {
+        List<Route> filteredRoutes = new ArrayList<>();
+
+        for (Route route : allRoutes) {
+            if (route.getRouteNumber().contains(query) ||
+                    route.getOrigin().contains(query) ||
+                    route.getDestination().contains(query)) {
+                filteredRoutes.add(route);
+            }
+        }
+
+        displayBusRoutes(filteredRoutes);
     }
 
     private class FetchBusRoutesTask extends AsyncTask<String, Void, List<Route>> {
@@ -77,11 +125,6 @@ public class RouteListActivity extends AppCompatActivity {
                         String origin = jsonObject.getString("orig_en");
                         String destination = jsonObject.getString("dest_en");
 
-                        // Use the extracted values as needed
-                        Log.d("Route", "Route Number: " + routeNumber);
-                        Log.d("Route", "Origin: " + origin);
-                        Log.d("Route", "Destination: " + destination);
-
                         Route route = new Route(routeNumber, origin, destination);
                         routes.add(route);
                     }
@@ -101,7 +144,7 @@ public class RouteListActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<Route> routes) {
-            Log.d("FetchBusRoutesTask", "Retrieved " + routes.size() + " routes");
+                    allRoutes = routes;
             displayBusRoutes(routes);
         }
     }
