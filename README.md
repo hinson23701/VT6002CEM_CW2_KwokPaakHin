@@ -1,4 +1,5 @@
-HK Tour App
+Name:kwok Paak Hin Student.NO: 237048851 
+SHAPE VT6002CEM CW2 : HK Tour App
 
 The feature of the mobile app
 The feature of the mobile app is very important for developing a tour recommendation 
