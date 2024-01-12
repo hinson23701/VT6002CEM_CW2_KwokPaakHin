@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -29,6 +30,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -69,20 +73,29 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(), fineLocationPermission) == PackageManager.PERMISSION_GRANTED) {
             if (ContextCompat.checkSelfPermission(this.getApplicationContext(), coarseLocationPermission) == PackageManager.PERMISSION_GRANTED) {
-                fusedLocationProviderClient.getLastLocation().addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        Location location = task.getResult();
-                        double latitude = location.getLatitude();
-                        double longitude = location.getLongitude();
-                        // Do something with the latitude and longitude values
+                fusedLocationProviderClient.getLastLocation().addOnCompleteListener(this, new OnCompleteListener<Location>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Location> task) {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            Location location = task.getResult();
+                            double latitude = location.getLatitude();
+                            double longitude = location.getLongitude();
+                            // Do something with the latitude and longitude values
 
-                        LatLng MyLocation = new LatLng(latitude,longitude);
-                        mMap.addMarker(new MarkerOptions()
-                                .position(MyLocation)
-                                .title("My Location"));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(MyLocation));
-                    } else {
-                        // Failed to retrieve location
+                            LatLng myLocation = new LatLng(latitude, longitude);
+
+                            // Create a blue marker icon
+                            float hue = 240; // Hue value for blue color
+                            BitmapDescriptor icon = BitmapDescriptorFactory.defaultMarker(hue);
+
+                            mMap.addMarker(new MarkerOptions()
+                                    .position(myLocation)
+                                    .title("My Location")
+                                    .icon(icon));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
+                        } else {
+                            // Failed to retrieve location
+                        }
                     }
                 });
             } else {
