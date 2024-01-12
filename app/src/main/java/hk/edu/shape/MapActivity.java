@@ -24,12 +24,18 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private FusedLocationProviderClient fusedLocationProviderClient;
+    private ChildEventListener markersChildEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,22 +109,50 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Vcity and move the camera
-        LatLng Vcity = new LatLng(22.395963137448877, 113.97410476135805);
-        mMap.addMarker(new MarkerOptions()
-                .position(Vcity)
-                .title("Vcity"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(Vcity));
+        // Set up ChildEventListener to listen for updates to the "markers" location in the database
+        markersChildEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String previousChildName) {
+                // Retrieve latitude, longitude, and title values from the child snapshot
+                double latitude = dataSnapshot.child("latitude").getValue(Double.class);
+                double longitude = dataSnapshot.child("longitude").getValue(Double.class);
+                String title = dataSnapshot.child("title").getValue(String.class);
 
-        // Add a marker in Tuen Mun Plaza and move the camera
-        LatLng TMPlaza = new LatLng(22.393701452383166, 113.97646510503148);
-        mMap.addMarker(new MarkerOptions()
-                .position(TMPlaza)
-                .title("Tuen Mun Plaza"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(TMPlaza));
+                // Create LatLng object for the marker
+                LatLng markerLocation = new LatLng(latitude, longitude);
+
+                // Add marker to the map
+                mMap.addMarker(new MarkerOptions()
+                        .position(markerLocation)
+                        .title(title));
+            }
+
+            //@Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, String previousChildName) {
+                // Handle updates to the markers
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                // Handle removal of markers
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, String previousChildName) {
+                // Handle movement of markers
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle database error
+            }
+        };
+
+        // Add the ChildEventListener to the "markers" location in the database
+        FirebaseDatabase.getInstance().getReference("locations").addChildEventListener(markersChildEventListener);
     }
 
-    public void PlaceClick(View view) {
+        public void PlaceClick(View view) {
         Intent intent = new Intent(this, PlaceActivity.class);
         startActivity(intent);
     }
