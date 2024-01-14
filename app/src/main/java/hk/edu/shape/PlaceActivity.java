@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.List;
 
-public class PlaceActivity extends Activity {
+public class PlaceActivity extends AppCompatActivity {
 
     private ListView listView;
     private MallListAdapter adapter;
