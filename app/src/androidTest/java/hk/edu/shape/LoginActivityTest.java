@@ -34,9 +34,8 @@ public class LoginActivityTest {
         // Verify that the MapActivity is launched
         ActivityScenario<MapActivity> mapActivityScenario = ActivityScenario.launch(MapActivity.class);
         mapActivityScenario.onActivity(activity -> {
-            // You can add assertions here to verify the state of the MapActivity
+
         });
 
-        // You can add additional assertions here to check if the UI elements are displayed as expected after successful login.
     }
 }
