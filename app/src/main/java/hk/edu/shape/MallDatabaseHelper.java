@@ -92,7 +92,7 @@ public class MallDatabaseHelper extends SQLiteOpenHelper {
         }
         return malls;
     }
-
+//get the favourite list from the database
     public boolean isFavorite(Place mall) {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + TABLE_FAVORITES + " WHERE " + COLUMN_ID + " = " + mall.getId();
@@ -102,7 +102,7 @@ public class MallDatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return isFavorite;
     }
-
+//insert the favourite list
     public void addToFavorites(Place mall) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -112,7 +112,7 @@ public class MallDatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_FAVORITES, null, values);
         db.close();
     }
-
+//remove the favourite list
     public void removeFromFavorites(Place mall) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_FAVORITES, COLUMN_ID + " = " + mall.getId(), null);

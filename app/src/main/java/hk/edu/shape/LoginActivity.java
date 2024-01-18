@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-
+//login function with firebase auth API
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String TAG = "EmailPassword";
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         // [END sign_in_with_email]
     }
 
-
+//to register page
     public void RegisterClick(View view) {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
+//get the text from the UI element which user type
     public void Login(View view) {
         String Signinemail = email.getText().toString().trim();
         String SigninPass = password.getText().toString().trim();

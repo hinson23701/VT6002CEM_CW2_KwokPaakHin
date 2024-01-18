@@ -66,20 +66,20 @@ public class RouteListActivity extends AppCompatActivity {
 
         fetchBusRoutes();
     }
-
+//get the data from KMB LWB  web api
     private void fetchBusRoutes() {
         String url = "\n" +
                 "https://data.etabus.gov.hk/v1/transport/kmb/route/";
 
         new FetchBusRoutesTask().execute(url);
     }
-
+// display bus route
     private void displayBusRoutes(List<Route> routes) {
         adapter.clear();
         adapter.addAll(routes);
         adapter.notifyDataSetChanged();
     }
-
+// filter the bus route which user type
     private void filterRoutes(String query) {
         List<Route> filteredRoutes = new ArrayList<>();
 
@@ -93,7 +93,7 @@ public class RouteListActivity extends AppCompatActivity {
 
         displayBusRoutes(filteredRoutes);
     }
-
+//connect to internet and to gett the data from the api
     private class FetchBusRoutesTask extends AsyncTask<String, Void, List<Route>> {
 
         @Override

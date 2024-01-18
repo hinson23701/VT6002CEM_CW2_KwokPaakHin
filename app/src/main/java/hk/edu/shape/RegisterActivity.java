@@ -36,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         signupPassword = findViewById(R.id.signup_password);
         signupButton = findViewById(R.id.signup_button);
         loginRedirectText = findViewById(R.id.loginRedirectText);
-
+// type the email and password to register account in firebase auth
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

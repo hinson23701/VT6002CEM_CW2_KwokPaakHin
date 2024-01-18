@@ -65,7 +65,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             getLastLocation();
         }
     }
-
+//get the user location through the GPS sensor
     @SuppressLint("MissingPermission")
     private void getLastLocation() {
         String fineLocationPermission = Manifest.permission.ACCESS_FINE_LOCATION;

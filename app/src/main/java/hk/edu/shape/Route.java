@@ -1,5 +1,5 @@
 package hk.edu.shape;
-
+//the getter and setter from the route
 public class Route {
     private String routeNumber;
     private String origin;

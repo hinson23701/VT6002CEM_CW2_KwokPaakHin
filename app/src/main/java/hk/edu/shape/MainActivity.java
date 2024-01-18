@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
+//first page of the apps
 public class MainActivity extends AppCompatActivity {
     Button btnLogin;
 
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-
+// to main page
     public void ToMainPage(View view) {
         Intent intent = new Intent(MainActivity.this, MapActivity.class);
         startActivity(intent);
