@@ -10,9 +10,11 @@
         android:layout_height="match_parent"
         android:id="@+id/listview"
         tools:listitem="@layout/list_item"
+        android:layout_above="@+id/buttonsLayout2"
         />
     <LinearLayout
-        android:id="@+id/buttonsLayout"
+
+        android:id="@+id/buttonsLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -29,6 +31,32 @@
         android:layout_marginTop="16dp"
         android:onClick = "OnClick"
         />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mall location"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:paddingRight="10dp"
+            android:onClick="MallClick"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bus Route"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:paddingRight="10dp"
+            android:onClick="BusRouteClick"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hong Kong Place"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:paddingRight="10dp"
+            />
     </LinearLayout>
 
 

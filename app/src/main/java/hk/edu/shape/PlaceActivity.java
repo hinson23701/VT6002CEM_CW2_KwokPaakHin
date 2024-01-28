@@ -49,4 +49,14 @@ public class PlaceActivity extends AppCompatActivity {
         Intent intent = new Intent(PlaceActivity.this, FavoritePlacesActivity.class);
         startActivity(intent);
     }
+
+    public void BusRouteClick(View view) {
+        Intent intent = new Intent(PlaceActivity.this, RouteListActivity.class);
+        startActivity(intent);
+    }
+
+    public void MallClick(View view) {
+        Intent intent = new Intent(PlaceActivity.this, MapActivity.class);
+        startActivity(intent);
+    }
 }

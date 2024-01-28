@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".RouteListActivity">
     <EditText
         android:id="@+id/editTextSearch"
         android:layout_width="match_parent"
@@ -20,6 +21,42 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/list_item_route"/>
+        tools:listitem="@layout/list_item_route"
+        android:layout_above="@+id/buttonsLayout3"/>
+    <LinearLayout
+        android:id="@+id/buttonsLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp">
 
-</LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mall location"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:paddingRight="10dp"
+            android:onClick="MallClick"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bus Route"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:paddingRight="10dp"
+           />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hong Kong Place"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:paddingRight="10dp"
+            android:onClick="PlaceClick"/>
+    </LinearLayout>
+
+</RelativeLayout>

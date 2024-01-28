@@ -12,11 +12,12 @@
         android:layout_above="@+id/buttonsLayout"
         tools:context=".MapActivity" />
 
+
     <LinearLayout
         android:id="@+id/buttonsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:padding="10dp">
 
@@ -31,11 +32,11 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bus Route Infomation"
+            android:text="Bus Route"
             android:padding="10dp"
             android:layout_marginTop="20dp"
             android:paddingRight="10dp"
-            android:onClick ="BusRouteClick"/>
+            android:onClick="BusRouteClick"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -44,7 +45,7 @@
             android:padding="10dp"
             android:layout_marginTop="20dp"
             android:paddingRight="10dp"
-            android:onClick ="PlaceClick"/>
+            android:onClick="PlaceClick"/>
     </LinearLayout>
 
 </RelativeLayout>

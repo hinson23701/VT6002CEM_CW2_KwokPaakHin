@@ -1,4 +1,5 @@
 package hk.edu.shape;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -93,7 +94,17 @@ public class RouteListActivity extends AppCompatActivity {
 
         displayBusRoutes(filteredRoutes);
     }
-//connect to internet and to gett the data from the api
+
+    public void MallClick(View view) {
+        Intent intent = new Intent(RouteListActivity.this, MapActivity.class);
+        startActivity(intent);
+    }
+    public void PlaceClick(View view) {
+        Intent intent = new Intent(this, PlaceActivity.class);
+        startActivity(intent);
+    }
+
+    //connect to internet and to gett the data from the api
     private class FetchBusRoutesTask extends AsyncTask<String, Void, List<Route>> {
 
         @Override
