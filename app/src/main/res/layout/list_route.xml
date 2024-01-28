@@ -1,28 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     tools:context=".RouteListActivity">
-    <EditText
-        android:id="@+id/editTextSearch"
+
+    <LinearLayout
+        android:id="@+id/buttonsLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter route number, or destination or origination" />
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:padding="10dp">
 
-    <Button
-        android:id="@+id/buttonSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search" />
+        <EditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Enter route number, destination, or origination" />
+
+        <Button
+            android:id="@+id/buttonSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+           />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/list_item_route"
-        android:layout_above="@+id/buttonsLayout3"/>
+        android:layout_above="@+id/buttonsLayout3"
+        android:layout_below="@+id/buttonsLayout4"
+        android:paddingBottom="10dp"
+        tools:listitem="@layout/list_item_route" />
+
     <LinearLayout
         android:id="@+id/buttonsLayout3"
         android:layout_width="match_parent"
@@ -38,7 +51,7 @@
             android:padding="10dp"
             android:layout_marginTop="20dp"
             android:paddingRight="10dp"
-            android:onClick="MallClick"/>
+            android:onClick="MallClick" />
 
         <Button
             android:layout_width="wrap_content"
@@ -46,8 +59,7 @@
             android:text="Bus Route"
             android:padding="10dp"
             android:layout_marginTop="20dp"
-            android:paddingRight="10dp"
-           />
+            android:paddingRight="10dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -56,7 +68,7 @@
             android:padding="10dp"
             android:layout_marginTop="20dp"
             android:paddingRight="10dp"
-            android:onClick="PlaceClick"/>
+            android:onClick="PlaceClick" />
     </LinearLayout>
 
 </RelativeLayout>
